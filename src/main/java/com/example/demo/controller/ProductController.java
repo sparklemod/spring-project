@@ -35,9 +35,9 @@ public class ProductController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Product> putProduct(@PathVariable Long id, @RequestBody Product product) {
-        return productService.existsById(id) ?
-                new ResponseEntity<>(productService.save(product), HttpStatus.OK) :
-                new ResponseEntity<>(productService.save(product), HttpStatus.CREATED);
+        return productService.existsById(id)
+                ? new ResponseEntity<>(productService.save(product), HttpStatus.OK)
+                : new ResponseEntity<>(productService.save(product), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
