@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Product;
 import com.example.demo.service.ProductService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,9 +34,7 @@ public class ProductController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Product> putProduct(@PathVariable Long id, @RequestBody Product product) {
-        return productService.existsById(id)
-                ? new ResponseEntity<>(productService.save(product), HttpStatus.OK)
-                : new ResponseEntity<>(productService.save(product), HttpStatus.CREATED);
+        return productService.updateOrCreate(product, id);
     }
 
     @DeleteMapping("/{id}")
